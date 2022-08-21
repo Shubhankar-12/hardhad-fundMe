@@ -10,7 +10,7 @@ error FundMe__notOwner();
  */
 contract FundMe {
     using PriceConverter for uint256;
-    uint256 public constant MIN_USD = 50 * 1e18;
+    uint256 public constant MIN_USD = 50 * 10**18;
 
     mapping(address => uint256) public addressToamountFunded;
     AggregatorV3Interface public priceFeed;
@@ -41,7 +41,7 @@ contract FundMe {
     function fund() public payable {
         require(
             msg.value.getConversionRate(priceFeed) >= MIN_USD,
-            "Didn't send enough eth"
+            "You need to spend more ETH!"
         );
         funders.push(msg.sender);
         addressToamountFunded[msg.sender] += msg.value;
