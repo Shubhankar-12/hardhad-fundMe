@@ -7,8 +7,8 @@ library PriceConverter{
     function getPrice(AggregatorV3Interface priceFeed) internal view returns(uint256) {
         // ABI
         // Address 0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
-        (,int256 price,,,)=priceFeed.latestRoundData();
-        return uint256(price * 1e10);
+        (,int256 answer,,,)=priceFeed.latestRoundData();
+        return uint256(answer * 10**10);
     }
     function getVersion(AggregatorV3Interface priceFeed) internal view returns(uint256){
         return priceFeed.version();
@@ -16,7 +16,7 @@ library PriceConverter{
 
     function getConversionRate(uint256 ethAmount,AggregatorV3Interface priceFeed) internal view returns(uint256){
         uint256 ethPrice=getPrice(priceFeed);
-        uint256 ethInUSD=(ethPrice*ethAmount)/1e18;
+        uint256 ethInUSD=(ethPrice*ethAmount)/(10**18);
         return ethInUSD;
     }
 }
