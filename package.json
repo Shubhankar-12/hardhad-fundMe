@@ -1,4 +1,6 @@
 {
+  "name": "hardhat-fund-me",
+  "author": "Shubh Shubhankar",
   "devDependencies": {
     "@chainlink/contracts": "^0.4.2",
     "@ethersproject/abi": "^5.4.7",
@@ -16,7 +18,16 @@
     "hardhat": "^2.10.2",
     "hardhat-deploy": "^0.11.12",
     "hardhat-gas-reporter": "^1.0.8",
+    "solhint": "^3.3.7",
     "solidity-coverage": "^0.7.21",
     "typechain": "^8.1.0"
+  },
+  "scripts": {
+    "test": "yarn hardhat test",
+    "test:staging": "yarn hardhat test --network rinkeby",
+    "lint": "yarn solhint 'contracts/*.sol'",
+    "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
+    "test:coverage": "yarn hardhat coverage",
+    "format": "yarn prettier --write ."
   }
 }
